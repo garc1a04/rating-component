@@ -1,6 +1,5 @@
 var numberSelected = "";
-var clicou = false;
-
+var avisou = false;
 
 colorEvent("button","white",null);
 colorEvent(".rating div","hsl(25, 97%, 53%)","black");
@@ -15,19 +14,21 @@ $(".rating div").on("click", function () {
     }
     
     numberSelected = this.classList;
-    clicou = true;
 });
 
 $("button").on("click", function () {
     if(numberSelected != "") {
         $(".container").css("display", "none");
 
-
         $(".selected").append('<p class="paragraph2 color option">You selected '+numberSelected+' out of 5</p>');
+
         $(".container2").css("display", "flex");
     }
-
-    $("button").after("<p class='paragraphErro'> Please, selected anything option</p>");
+    
+    if(!avisou){
+        $("button").after("<p class='paragraphErro'> Please, selected anything option</p>")
+        avisou = true;
+    }
 });
 
 function colorEvent(selector, corIn,colorLetter){
